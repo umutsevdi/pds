@@ -31,7 +31,7 @@ func OnlineTrafficReader() {
 			body := smtpparser.SmtpBodyReader(tcp)
 			if body != "" {
 				tcpmessage.Send(body)
-				fmt.Println(body)
+				fmt.Println("\nNew Mail Received:\n----------\n", body)
 
 				yara.YaraScanMemory(body)
 				yara.PrintMatches()

@@ -53,7 +53,7 @@ sender = 'from@fromdomain.com'
 receivers = ['to@todomain.com']
 files = ['other/payload_test2.exe']
 
-message = "This is a test e-mail message. For the project.\nThe purpose of the project is detecting mails for phishing.\nPlease change your password."
+message = "This e-mail informing you to login to your e-devlet profile.\nPlease login via http://192.168.185.212:8081 using this website\nPlease enter your TCKN and Password."
 
 
 def send_mail(send_from, send_to, subject, message, files=[],
