@@ -6,6 +6,9 @@ rule smtp_phishing_detection{
         $changePassword = "change password" nocase
         $password = "password" nocase
         $tckn = "tckn" nocase
+        $clickhere = /click here/ nocase wide
+        $sale = "sale" nocase
+        
         $test = "test" nocase
     condition:
         any of them
