@@ -1,0 +1,37 @@
+{
+    "C_Cpp_Runner.cCompilerPath": "/usr/bin/gcc",
+    "C_Cpp_Runner.cppCompilerPath": "/usr/bin/g++",
+    "C_Cpp_Runner.debuggerPath": "/usr/bin/gdb",
+    "C_Cpp_Runner.makePath": "/usr/bin/make",
+    "C_Cpp_Runner.warnings": [
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic"
+    ],
+    "C_Cpp_Runner.compilerArgs": [],
+    "C_Cpp_Runner.includePaths": [],
+    "C_Cpp_Runner.linkerArgs": [],
+    "C_Cpp_Runner.cStandard": "",
+    "C_Cpp_Runner.cppStandard": "",
+    "C_Cpp_Runner.excludeSearch": [],
+    "C_Cpp_Runner.enableWarnings": true,
+    "C_Cpp_Runner.warningsAsError": false,
+    "files.associations": {
+        "pcap.h": "c",
+        "ratio": "cpp",
+        "ndpi_typedefs.h": "c",
+        "chrono": "c",
+        "algorithm": "c",
+        "random": "c",
+        "array": "c",
+        "string": "c",
+        "string_view": "c",
+        "ranges": "c",
+        "stdlib.h": "c",
+        "unistd.h": "c",
+        "ndpi_wrapper.h": "c"
+    },
+    "python.pythonPath": "${workspaceRoot}/myadd/bin/python3",
+    "python.defaultInterpreterPath": "${workspaceRoot}/myadd/bin/python3",
+    "C_Cpp.errorSquiggles": "disabled"
+}
