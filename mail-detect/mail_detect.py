@@ -151,7 +151,7 @@ class WordHighlight():
 
         return out_sent
 
-model.load_state_dict(torch.load("params.pth"))
+model.load_state_dict(torch.load("params.pth", map_location="cpu"))
 
 
 
@@ -185,13 +185,18 @@ def process_data(data):
     #print(a(sentence,resp_words))
     
     return t
-    
+
+print("Start listening")
 while True:
     data = conn.recv(1024)
+    print("{",data,"}")
     if not data:
         pass
     else: 
+        data = data.decode()
+        print("DATA:", data)
         label = process_data(data)
+        print("LABEL:", data)
         send_data = label.encode()
         conn.send(send_data)
     

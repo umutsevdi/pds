@@ -12,13 +12,7 @@ import (
 var yara_vars model.YaraVars
 
 func init() {
-	YaraInit()
-}
-
-func YaraInit() {
 	var err error
-	fmt.Println("hello from init")
-
 	yara_vars.Compiler, err = yara.NewCompiler()
 	if err != nil {
 		log.Fatal(err)
@@ -46,9 +40,9 @@ func YaraGetRules() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	for _, v := range yara_vars.Rules.GetRules() {
-		fmt.Println(v)
-	}
+	// for _, v := range yara_vars.Rules.GetRules() {
+	//	fmt.Println(v)
+	// }
 }
 
 func YaraScanMemory(message string) {
