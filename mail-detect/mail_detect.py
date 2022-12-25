@@ -187,13 +187,14 @@ def process_data(data):
 print("Start listening")
 while True:
     data = conn.recv(1024)
-    print("{",data,"}")
     if not data:
         pass
     else: 
+        print("Mail received")
         data = data.decode()
         print("DATA:", data)
         label = process_data(data)
+        print("Processing data...")
         print("LABEL:", label)
         send_data = label.encode()
         conn.send(send_data)
