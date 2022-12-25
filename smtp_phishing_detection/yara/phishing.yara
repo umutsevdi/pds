@@ -3,7 +3,7 @@ rule smtp_phishing_detection{
         author = "İsmet Güngör"
         description = "Phishing detection"
     strings:
-        $changePassword = /change password/ nocase
+        $changePassword = "change password" nocase
         $password = "password" nocase
         $tckn = "tckn" nocase
         $test = "test" nocase
