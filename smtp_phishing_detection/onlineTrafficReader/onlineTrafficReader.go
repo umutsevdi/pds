@@ -11,7 +11,7 @@ import (
 )
 
 func OnlineTrafficReader() {
-	handle, err := pcap.OpenLive("en0", 1600, true, pcap.BlockForever)
+	handle, err := pcap.OpenLive("wlp1s0", 1600, true, pcap.BlockForever)
 	if err != nil {
 		log.Fatal(err)
 	}
