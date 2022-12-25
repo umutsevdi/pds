@@ -40,6 +40,9 @@ func YaraGetRules() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	for _, v := range yara_vars.Rules.GetRules() {
+		fmt.Println(v)
+	}
 }
 
 func YaraScanMemory(message string) {
