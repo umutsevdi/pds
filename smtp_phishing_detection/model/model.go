@@ -1,9 +1,11 @@
 package model
 
-import "github.com/flier/gohs/hyperscan"
+import (
+	"github.com/hillu/go-yara"
+)
 
-type HSrelated struct {
-	Patterns *hyperscan.Pattern
-	HsDB     hyperscan.BlockDatabase
-	Scratch  *hyperscan.Scratch
+type YaraVars struct {
+	Compiler *yara.Compiler
+	Rules    *yara.Rules
+	Matches  yara.MatchRules
 }

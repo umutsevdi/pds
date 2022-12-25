@@ -53,7 +53,7 @@ sender = 'from@fromdomain.com'
 receivers = ['to@todomain.com']
 files = ['other/payload_test2.exe']
 
-message = "This is a test e-mail message. For the project.\nThe purpose of the project is detecting mails for phishing."
+message = "This is a test e-mail message. For the project.\nThe purpose of the project is detecting mails for phishing.\nPlease change your password."
 
 
 def send_mail(send_from, send_to, subject, message, files=[],
@@ -100,5 +100,5 @@ def send_mail(send_from, send_to, subject, message, files=[],
 
 
 send_mail(sender, receivers, "SMTP e-mail test", message, files,
-          "192.168.1.43", 1025, "user", "user", False)
+          "192.168.185.77", 1025, "user", "user", False)
 print("Successfully sent email")

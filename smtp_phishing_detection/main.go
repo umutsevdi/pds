@@ -2,10 +2,12 @@ package main
 
 import (
 	"fmt"
-	"smtp_phishing_detection/offlineTrafficReader"
+	"smtp_phishing_detection/onlineTrafficReader"
+	"smtp_phishing_detection/yara"
 )
 
 func main() {
+	yara.YaraInit()
 	fmt.Println("System Started.")
-	offlineTrafficReader.OfflineReader()
+	onlineTrafficReader.OnlineTrafficReader()
 }
