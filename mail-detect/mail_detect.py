@@ -43,7 +43,7 @@ def utils_preprocess_text(text, flg_stemm=False, flg_lemm=True, lst_stopwords=No
         lem = nltk.stem.wordnet.WordNetLemmatizer()
         lst_text = [lem.lemmatize(word) for word in lst_text]
     text = " ".join(lst_text)
-    
+    return text
     
     
 def textCleaner(df = None , src = 'comment_text' ,dst = 'text_clean',stop_words = 'english'):
@@ -58,8 +58,6 @@ def textCleaner(df = None , src = 'comment_text' ,dst = 'text_clean',stop_words 
     df[dst] = df[src].apply(lambda x: 
           utils_preprocess_text(x, flg_stemm=False, flg_lemm=True, 
           lst_stopwords=lst_stopwords))
-
-    return text
 
 pretrained = "distilbert-base-uncased"
 print("starting tokenizer")
@@ -196,7 +194,7 @@ while True:
         data = data.decode()
         print("DATA:", data)
         label = process_data(data)
-        print("LABEL:", data)
+        print("LABEL:", label)
         send_data = label.encode()
         conn.send(send_data)
     
