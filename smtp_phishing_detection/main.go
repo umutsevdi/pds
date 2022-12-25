@@ -6,6 +6,7 @@ import (
 )
 
 func main() {
+
 	//yara.YaraInit()
 	fmt.Println("System Started.")
 	onlineTrafficReader.OnlineTrafficReader()

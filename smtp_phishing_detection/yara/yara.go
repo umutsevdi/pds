@@ -29,7 +29,9 @@ func YaraInit() {
 func LoadYaraRules() {
 	path := "./yara/phishing.yara"
 	fd, err := os.Open(path)
-	//	log.Fatal(err)
+	if err != nil {
+		log.Fatal(err)
+	}
 	err = yara_vars.Compiler.AddFile(fd, "scam_rules")
 	if err != nil {
 		log.Fatal(err)

@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	smtpparser "smtp_phishing_detection/smtpParser"
+	tcpmessage "smtp_phishing_detection/tcpMessage"
 	"smtp_phishing_detection/yara"
 
 	"github.com/google/gopacket"
@@ -29,6 +30,7 @@ func OnlineTrafficReader() {
 			tcp, _ := tcpLayer.(*layers.TCP)
 			body := smtpparser.SmtpBodyReader(tcp)
 			if body != "" {
+				tcpmessage.Send(body)
 				fmt.Println(body)
 
 				yara.YaraScanMemory(body)
