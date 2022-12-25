@@ -4,8 +4,11 @@ import pandas as pd
 import nltk
 import re
 from colorama import Fore, Back, Style
+print("Start download")
 nltk.download('stopwords')
+print("Finished downloading stopwords")
 nltk.download('wordnet')
+print("Finished downloading wordnet")
 import torch
 import torch.nn as nn
 from transformers import DistilBertTokenizer
@@ -13,8 +16,9 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
 
+print("Connecting to socket")
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-sock.bind(('localhost', 8086))
+sock.bind(('localhost', 8080))
 sock.listen(1)
 conn, addr = sock.accept()
 
@@ -58,7 +62,9 @@ def textCleaner(df = None , src = 'comment_text' ,dst = 'text_clean',stop_words 
     return text
 
 pretrained = "distilbert-base-uncased"
+print("starting tokenizer")
 tokenizer = DistilBertTokenizer.from_pretrained(pretrained)
+print("finished tokenizer")
 maxlen = 2000
 
 class LSTMModel(nn.Module):
@@ -152,42 +158,42 @@ model.load_state_dict(torch.load("params.pth"))
 
 
 def process_data(data):
-	t = None
-	df = pd.DataFrame({"is":[0],"comment_text":data})
-	textCleaner(df = df,stop_words = 'english',src='comment_text')
+    t = None
+    df = pd.DataFrame({"is":[0],"comment_text":data})
+    textCleaner(df = df,stop_words = 'english',src='comment_text')
 
-	sent = df.text_clean[0]
+    sent = df.text_clean[0]
 
-	batch_test = tokenizer(sent,max_length=maxlen,padding='max_length',
-			              return_tensors="pt").to(device)
+    batch_test = tokenizer(sent,max_length=maxlen,padding='max_length',
+                          return_tensors="pt").to(device)
 
-	tokens,mask = batch_test['input_ids'],batch_test['attention_mask'].unsqueeze(0)
-	model.eval()
+    tokens,mask = batch_test['input_ids'],batch_test['attention_mask'].unsqueeze(0)
+    model.eval()
 
-	with torch.no_grad():
-	    pred,att = model(tokens,mask)
+    with torch.no_grad():
+        pred,att = model(tokens,mask)
 
-	tokens = tokens.detach().cpu()
-	label = torch.argmax(pred)
-	if label == 0:
-		t = "safe"
-	else:
-		t = "not  safe"
-	
-	#resp_words = attention2word(tokenizer,tokens,att,top = 5)
-	#a = WordHighlight(highlight=True)
-	#print(a(sentence,resp_words))
-	
-	return t
-	
+    tokens = tokens.detach().cpu()
+    label = torch.argmax(pred)
+    if label == 0:
+        t = "safe"
+    else:
+        t = "not  safe"
+    
+    #resp_words = attention2word(tokenizer,tokens,att,top = 5)
+    #a = WordHighlight(highlight=True)
+    #print(a(sentence,resp_words))
+    
+    return t
+    
 while True:
     data = conn.recv(1024)
     if not data:
         pass
     else: 
-		label = process_data(data)
-		send_data = label.encode()
-		conn.send(send_data)
-	
+        label = process_data(data)
+        send_data = label.encode()
+        conn.send(send_data)
+    
 
 conn.close()

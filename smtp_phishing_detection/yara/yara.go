@@ -11,6 +11,10 @@ import (
 
 var yara_vars model.YaraVars
 
+func init() {
+	YaraInit()
+}
+
 func YaraInit() {
 	var err error
 	fmt.Println("hello from init")
@@ -25,7 +29,7 @@ func YaraInit() {
 func LoadYaraRules() {
 	path := "./yara/phishing.yara"
 	fd, err := os.Open(path)
-	log.Fatal(err)
+	//	log.Fatal(err)
 	err = yara_vars.Compiler.AddFile(fd, "scam_rules")
 	if err != nil {
 		log.Fatal(err)
