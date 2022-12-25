@@ -28,9 +28,12 @@ func OnlineTrafficReader() {
 		if tcpLayer := packet.Layer(layers.LayerTypeTCP); tcpLayer != nil {
 			tcp, _ := tcpLayer.(*layers.TCP)
 			body := smtpparser.SmtpBodyReader(tcp)
-			yara.YaraScanMemory(body)
-			yara.PrintMatches()
-			fmt.Println(body)
+			if body != "" {
+				fmt.Println(body)
+
+				yara.YaraScanMemory(body)
+				yara.PrintMatches()
+			}
 			//TODO: send body to py
 		}
 	}
