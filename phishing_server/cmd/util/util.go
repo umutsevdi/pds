@@ -8,9 +8,8 @@ import (
 )
 
 type Configuration struct {
-	lastExecutionTime int
-	port              int
-	token             string
+	ip   string
+	port int
 }
 
 var Config Configuration
@@ -28,6 +27,11 @@ func init() {
 			continue
 		}
 		switch line[0] {
+		case "ip":
+			Config.ip = line[1]
+			if err != nil {
+				log.Fatal("error: port must be an integer")
+			}
 		case "port":
 			Config.port, err = strconv.Atoi(line[1])
 			if err != nil {
@@ -50,10 +54,10 @@ func (c *Configuration) Port() int {
 	return c.port
 }
 
-// Returns Github Authentication Token
-// @return String that has been registered
-func (c *Configuration) Token() string {
-	return c.token
+// Returns the port address
+// @return port to run
+func (c *Configuration) Ip() string {
+	return c.ip
 }
 
 // Returns the requested file in the /public/ directory

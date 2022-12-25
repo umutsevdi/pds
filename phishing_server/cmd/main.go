@@ -19,7 +19,7 @@ func router() {
 
 	http.HandleFunc("/", Serve)
 	log.Println("server is started from :" + strconv.Itoa(util.Config.Port()))
-	log.Fatal(http.ListenAndServe(":"+strconv.Itoa(util.Config.Port()), nil))
+	log.Fatal(http.ListenAndServe(util.Config.Ip()+":"+strconv.Itoa(util.Config.Port()), nil))
 }
 
 func Serve(w http.ResponseWriter, r *http.Request) {
