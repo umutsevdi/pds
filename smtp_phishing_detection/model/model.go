@@ -1,7 +1,7 @@
 package model
 
 import (
-	"github.com/hillu/go-yara"
+	"github.com/hillu/go-yara/v4"
 )
 
 type YaraVars struct {

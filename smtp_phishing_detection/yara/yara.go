@@ -6,7 +6,7 @@ import (
 	"os"
 	"smtp_phishing_detection/model"
 
-	"github.com/hillu/go-yara"
+	"github.com/hillu/go-yara/v4"
 )
 
 var yara_vars model.YaraVars
@@ -44,7 +44,7 @@ func YaraGetRules() {
 
 func YaraScanMemory(message string) {
 	var err error
-	yara_vars.Matches, err = yara_vars.Rules.ScanMem([]byte(message), 0, 0)
+	err = yara_vars.Rules.ScanMem([]byte(message), 0, 0, &yara_vars.Matches)
 	if err != nil {
 		log.Fatal(err)
 	}
