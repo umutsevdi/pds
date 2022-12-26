@@ -29,7 +29,8 @@ func Serve(w http.ResponseWriter, r *http.Request) {
 		if contentHeader != "" {
 			w.Header().Add("Content-Type", contentHeader)
 		}
-		data = []byte(strings.ReplaceAll(string(data), "UMUT CAN", username))
+		data = []byte(strings.ReplaceAll(string(data), "###NAME###", username))
+		data = []byte(strings.ReplaceAll(string(data), "###TCKN###", username))
 		w.WriteHeader(200)
 		w.Write(data)
 		return
