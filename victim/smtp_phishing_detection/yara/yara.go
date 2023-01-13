@@ -54,10 +54,18 @@ func YaraScanMemory(message string) {
 }
 
 func PrintMatches() {
+	if yara_vars.Matches != nil {
+		fmt.Println("None Phishing Keyword Detected")
+	}
 	for _, v := range yara_vars.Matches {
 		fmt.Println(v.Rule)
 		for _, i := range v.Strings {
 			fmt.Println("Possible phishing keyword", i.Name)
 		}
 	}
+	ClearMatches()
+}
+
+func ClearMatches() {
+	yara_vars.Matches = nil
 }
