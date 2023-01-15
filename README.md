@@ -105,8 +105,8 @@ processed text in a new column.
 ### 3. Installation
 
 Requirements: 
-* [Yara v4] (https://github.com/hillu/go-yara/v4)
-* [nltk] (https://www.nltk.org/)
+* [Yara v4](https://github.com/hillu/go-yara/v4)
+* [nltk](https://www.nltk.org/)
 * Numpy
 * Pandas
 * Docker and docker-compose
